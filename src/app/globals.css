@@ -1,8 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Potta+One&display=swap");
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+}
+
+@theme {
+  --font-potta-one: "Potta One", cursive;
+  --color-orange: #ffb947;
 }
 
 @theme inline {
