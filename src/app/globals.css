@@ -8,6 +8,8 @@
 
 @theme {
   --font-potta-one: "Potta One", cursive;
+  --font-color: #333;
+  --color-gray: #666;
   --color-orange: #ffb947;
 }
 
@@ -27,6 +29,27 @@
 
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: var(--font-color);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+.font-text-xl {
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: -0.1px;
 }
