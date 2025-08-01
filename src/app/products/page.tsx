@@ -12,21 +12,22 @@ const ProductsPage = () => {
         subtitle="Products"
       />
       <div className="max-w-[1200px] mx-auto px-10 xl:px-0 flex flex-col pb-46">
-        <section className="py-24 self-center">
-          <span className="text-orange text-3xl leading-13 font-semibold">
-            Kialla Bakery는 호주 청정 밀가루 · 통밀가루 · 호라산밀가루만을
-            사용합니다.
-          </span>
+        <section className="pt-24 pb-10 self-center">
+          <span className="text-orange text-3xl leading-13 font-semibold text-center block">
+  Kialla Bakery는 호주 청정<br />
+  밀가루 · 통밀가루 · 호라산밀가루만을 사용합니다.
+</span>
+
         </section>
         {/* Gold Edition */}
-        <div className="flex flex-col gap-39 pt-5">
+        <div className="flex flex-col gap-39">
           <section className="flex flex-col gap-7">
             <span className="text-[40px] leading-13 font-semibold py-5">
               Gold Edition
             </span>
             {/* 빵 리스트 */}
             <div className="flex flex-col gap-15">
-              <div className="flex flex-col md:flex-row gap-5">
+              <div className="flex flex-col lg:flex-row gap-5">
                 <Image
                   src="/products/gold_1.png"
                   alt="bread1"
@@ -60,7 +61,7 @@ const ProductsPage = () => {
                 </div>
               </div>
               <div className="border-b border-black/20 w-full" />
-              <div className="flex flex-col md:flex-row gap-5">
+              <div className="flex flex-col lg:flex-row gap-5">
                 <Image
                   src="/products/gold_2.png"
                   alt="bread1"
@@ -90,7 +91,7 @@ const ProductsPage = () => {
                 </div>
               </div>
               <div className="border-b border-black/20 w-full" />
-              <div className="flex flex-col md:flex-row gap-5">
+              <div className="flex flex-col lg:flex-row gap-5">
                 <Image
                   src="/products/gold_3.png"
                   alt="bread1"
@@ -129,7 +130,7 @@ const ProductsPage = () => {
             </span>
             {/* 빵 리스트 */}
             <div className="flex flex-col gap-15">
-              <div className="flex flex-col md:flex-row gap-5">
+              <div className="flex flex-col lg:flex-row gap-5">
                 <Image
                   src="/products/dessert_1.png"
                   alt="bread1"
@@ -151,7 +152,7 @@ const ProductsPage = () => {
                 </div>
               </div>
               <div className="border-b border-black/20 w-full" />
-              <div className="flex flex-col md:flex-row gap-5">
+              <div className="flex flex-col lg:flex-row gap-5">
                 <Image
                   src="/products/dessert_2.png"
                   alt="bread1"
@@ -184,7 +185,7 @@ const ProductsPage = () => {
             </span>
             {/* 빵 리스트 */}
             <div className="flex flex-col gap-15">
-              <div className="flex flex-col md:flex-row gap-5">
+              <div className="flex flex-col lg:flex-row gap-5">
                 <Image
                   src="/products/bread_1.png"
                   alt="bread1"
@@ -210,7 +211,7 @@ const ProductsPage = () => {
                 </div>
               </div>
               <div className="border-b border-black/20 w-full" />
-              <div className="flex flex-col md:flex-row gap-5">
+              <div className="flex flex-col lg:flex-row gap-5">
                 <Image
                   src="/products/bread_2.png"
                   alt="bread2"

@@ -13,10 +13,10 @@ const BrandStoryPage = () => {
       <div className="max-w-[1200px] mx-auto px-10 xl:px-0 pt-26 text-xl">
         <section className="flex flex-col gap-4">
           <div className="flex flex-col gap-4">
-            <span className="text-3xl text-orange">
+            <span className="text-3xl font-semibold text-orange">
               빵은, 밀가루부터 달라야 하니까요
             </span>
-            <div className="flex flex-col pb-[34px] gap-5 font-text-xl">
+            <div className="flex flex-col pb-[34px] gap-5 text-base">
               <p>
                 1995 년, 축산기술을 배우기 위해 낯선 땅, 호주로 향했습니다. 서툰
                 영어, 막막한 미래 속에서 우연히 마주한 인연 하나가 제 삶을
@@ -38,31 +38,36 @@ const BrandStoryPage = () => {
             </div>
           </div>
           <div>
-            <div className="flex flex-col md:flex-row gap-[18px] items-center md:items-stretch">
-              <Image
-                src="/brandStory/bread1_1.png"
-                alt="img1"
-                width={690}
-                height={426}
-                className="max-w-[550px] md:max-w-[690px] w-full"
-              />
-              <Image
-                src="/brandStory/bread1_2.png"
-                alt="img2"
-                width={486}
-                height={426}
-                className="max-w-[550px] md:max-w-[486px] w-full"
-              />
-            </div>
-            <p className="text-base leading-[26px] text-[var(--color-gray)] pt-4 pb-[41px]">
+            <div className="flex flex-col md:flex-row gap-[18px] items-center md:items-stretch h-auto md:h-[426px] overflow-hidden">
+  <div className="w-full md:w-2/3 h-full overflow-hidden">
+    <Image
+      src="/brandStory/bread1_1.png"
+      alt="img1"
+      width={690}
+      height={426}
+      className="w-full h-full object-cover"
+    />
+  </div>
+  <div className="w-full md:w-1/3 h-full overflow-hidden">
+    <Image
+      src="/brandStory/bread1_2.png"
+      alt="img2"
+      width={486}
+      height={426}
+      className="w-full h-full object-cover"
+    />
+  </div>
+</div>
+
+
+            <p className="text-sm leading-[26px] text-[var(--color-gray)] pt-4 pb-[41px]">
               터키쉬브레드 : 1970년대에 많은 튀르키에사람들이 호주로 이민왔고 그
               중에 튀르키에에서 빵집을 운영하던 사람이 호주사람들의 입맛에 맞는
-              빵을 만들어 판매하기 시작하였고
-              <br /> 현재 호주사람이라면 모두가 알고 있는 호주 국민빵이 되었음.
+              빵을 만들어 판매하기 시작하였고, 현재 호주사람이라면 모두가 알고 있는 호주 국민빵이 되었음.
               중국에는 없는 우리나라 자장면과 같다.
             </p>
           </div>
-          <span className="font-text-xl pb-[76px]">
+          <span className="text-base pb-[76px]">
             그 기억은 지금까지 제 안에 남아 수십 년이 지난 지금, 저는 호주
             유기농 밀 브랜드 ‘키알라 퓨어(Kialla Pure)’의 유기농 밀가루를 한국에
             소개하며, 정말 건강한 빵이란 무엇인가를 다시 생각하게 되었습니다.{" "}
@@ -84,7 +89,7 @@ const BrandStoryPage = () => {
                   height={426}
                   className="max-w-[550px] w-full"
                 />
-                <span className="font-text-xl">
+                <span className="text-base text-center">
                   세계 자연청정국 호주산 100% 유기농 밀가루
                 </span>
               </div>
@@ -96,7 +101,7 @@ const BrandStoryPage = () => {
                   height={426}
                   className="max-w-[550px] w-full"
                 />
-                <span className="font-text-xl">
+                <span className="text-base text-center">
                   천연발효종을 사용한 느린 숙성의 철학
                 </span>
               </div>
@@ -108,31 +113,29 @@ const BrandStoryPage = () => {
                   height={426}
                   className="max-w-[550px] w-full"
                 />
-                <span className="font-text-xl">
-                  당뇨·알러지에도 대응 가능한 호라산 밀 제품 라인
+                <span className="text-base text-center">
+                  당뇨·알러지에도 대응 가능한 밀 제품 라인
                 </span>
               </div>
             </div>
           </div>
-          <span className="font-text-xl py-16">
+          <span className="text-base py-16">
             우리는 추억 속 터키쉬 브레드부터, 아이도, 부모도 함께 먹을 수 있는
             진짜 식사빵을 만듭니다. KIALLA BAKERY 는 단순한 빵집이 아닙니다.
-            <br /> 한 조각의 빵에, 안심과 따뜻함을 담는 공간입니다. 그리고 그
+            한 조각의 빵에, 안심과 따뜻함을 담는 공간입니다. 그리고 그
             빵을 통해 누군가의 하루를 더 나아지게 하고 싶은, 하나의 작은
             약속입니다.
           </span>
-          <blockquote className="relative text-gray-700 leading-relaxed pl-8 pt-16 pb-28 mx-auto">
+          <blockquote className="relative text-gray-700 leading-relaxed pl-8 pt-16 pb-28 mx-auto max-w-[680px]">
             <span className="font-potta-one absolute left-[-25px] top-1 text-[80px] text-gray-300 select-none">
               “
             </span>
-            <p className="text-[26px] leading-[46px]">
+            <p className="text-2xl leading-[46px]">
               젊은 시절, 호주에서 처음 만난 그 빵. 세월이 흘러도 잊히지 않는 그
               맛을,
-              <br />
               이젠 나이가 들어도 부담 없이 즐길 수 있게 만들고 싶었습니다.
-              <br />
               당뇨가 있는 분들도, 알러지가 있는 분들도 편하게 먹을 수 있도록…
-              <br />그 마음 하나로 연구하고 또 연구했습니다.
+              그 마음 하나로 연구하고 또 연구했습니다.
             </p>
           </blockquote>
           <div className="flex flex-col gap-16 pb-26 h-full">
@@ -145,8 +148,8 @@ const BrandStoryPage = () => {
                 height={365}
                 className="max-w-[550px] lg:max-w-[478px] w-full"
               />
-              <div className="flex flex-col py-5 justify-between w-full h-full">
-                <span className="font-text-xl">
+              <div className="flex flex-col justify-between w-full min-h-[300px] py-5">
+                <span className="text-base leading-[30px]">
                   “KIALLA(키알라)”라는 단어는 호주 원주민의(애보리진) 언어에서
                   유래된 것으로 알려져 있으며, 정확한 의미에 대한 공식적인
                   기록은 없지만, 호주 언어학자들은 “비옥한 땅(Fertile Land)”,
@@ -158,7 +161,9 @@ const BrandStoryPage = () => {
                   <br /> 이처럼, 호주에서는 원주민지명을 그대로 유지하거나
                   변형하여 사용하는 경우가 많습니다.
                 </span>
+                <a href="/about" className="inline-flex items-center">
                 <span className="font-semibold text-base">자세히 보기&gt;</span>
+                </a>
               </div>
             </div>
           </div>
@@ -181,7 +186,7 @@ const BrandStoryPage = () => {
                 height={250}
                 className="max-w-[588px] w-full lg:min-w-[588px]"
               />
-              <span className="text-white font-text-xl">
+              <span className="text-white text-base leading-[30px]">
                 <strong>
                   KIALLA BAKERY 빵의 메인 재료인 밀가루부터 다릅니다.
                 </strong>{" "}
@@ -201,7 +206,7 @@ const BrandStoryPage = () => {
                 height={250}
                 className="max-w-[588px] w-full lg:min-w-[588px]"
               />
-              <span className="text-white font-text-xl">
+              <span className="text-white text-base leading-[30px]">
                 <strong>KIALLA PURE ORGANIC</strong>은 여왕의 땅, 호주 Queens
                 Land 주 Toowooba 지역에 위치하고 있으며 이 지역 역시 곡물이 잘
                 자랄 수 있는 비옥하고 물이 풍부한 지역으로 자연 친화적이고
@@ -217,7 +222,7 @@ const BrandStoryPage = () => {
       </section>
 
       <div className="max-w-[1200px] mx-auto px-10 xl:px-0 py-30 pb-52">
-        <section className="flex flex-row gap-6">
+        <section className="flex flex-col md:flex-row gap-6">
           <div className="flex flex-col gap-4">
             <span className="text-3xl font-semibold leading-[40px]">
               한국 고객 여러분께 드리는 인사말
@@ -284,12 +289,14 @@ const BrandStoryPage = () => {
             </div>
           </div>
           <Image
-            src="/brandStory/img5_1.png"
-            alt="img1"
-            width={486}
-            height={668}
-            className="min-w-[486px] h-[668px] hidden lg:block"
-          />
+  src="/brandStory/img5_1.png"
+  alt="img1"
+  width={486}
+  height={300}
+  unoptimized
+  className="w-full h-auto max-h-[600px] object-cover"
+/>
+
         </section>
       </div>
     </main>

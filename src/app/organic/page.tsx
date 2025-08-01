@@ -18,17 +18,17 @@ const OrganicPage = () => {
               alt="grass_1"
               width={755}
               height={0}
-              className="w-[755px] h-[226.5px] absolute bottom-[-60px] left-[-50px]"
+              className="w-full h-auto md:w-[755px] md:h-[226.5px] absolute bottom-[-60px] md:left-[-50px]"
             />
             <Image
               src="/organic/grass_2.png"
               alt="grass_2"
               width={722}
               height={0}
-              className="w-[722px] h-[187px] absolute bottom-[-60px] right-[-50px]"
+              className="w-[722px] h-[187px] absolute bottom-[-60px] right-[-50px] hidden md:block"
             />
           </div>
-          <p className="px-20 pt-15 pb-15 text-3xl leading-[40px] tracking-tight text-center bg-orange/10 rounded-2xl">
+          <p className="px-20 pt-15 pb-15 font-semibold text-xl leading-[40px] tracking-tight text-center bg-orange/10 rounded-2xl">
             유기농 식품에 전념하고 있는 이유는 우리의 전체 식품 체계가 토양,
             식물, 동물, 음식, 사람,
             <br /> 그리고 환경과 연결되어 있다는 것을 너무나 잘 인식하기
@@ -38,7 +38,7 @@ const OrganicPage = () => {
             <br /> 호주 정부로부터 인증된 유기농 농장들과 협력하고 있습니다.
           </p>
         </div>
-        <p className="flex flex-col gap-8 pt-15 text-xl leading-[30px] tracking-tight text-center">
+        <p className="flex flex-col gap-8 pt-15 leading-[30px] tracking-tight text-center">
           <span>
             그들은 생물 다양성과 토양 비옥도를 유지하기 위해 전통적인 방법과
             현대적인 연구를 사용하여 자연과 함께 일합니다.

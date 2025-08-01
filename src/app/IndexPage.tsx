@@ -72,9 +72,11 @@ export default function IndexPage() {
           </p>
 
           <div className="px-6 md:pl-6 py-4 md:py-6 lg:pl-[80px] bg-[#3B1408] md:bg-white">
+            <a href="/brand-story" className="inline-flex items-center">
             <span className="inline-flex items-center text-sm font-semibold text-white md:text-[#333333]">
               브랜드스토리 <ChevronRight className="w-4 h-4" />
             </span>
+            </a>
           </div>
         </div>
       </section>
@@ -119,9 +121,11 @@ export default function IndexPage() {
                 <br />
                 진한 풍미와 순수한 맛을 경험해 보세요.
               </p>
+              <a href="/products" className="inline-flex items-center">
               <span className="inline-flex items-center text-sm font-semibold">
-                브랜드스토리 <ChevronRight className="w-4 h-4" />
+                제품 소개 <ChevronRight className="w-4 h-4" />
               </span>
+              </a>
             </div>
           </div>
           <div className="flex flex-col gap-8 md:flex-row">
@@ -211,9 +215,11 @@ export default function IndexPage() {
                 체계가 토양, 식물, 동물, 음식, 사람, 그리고 환경과 연결되어
                 있다는 것을 너무나 잘 인식하기 때문입니다.
               </p>
+              <a href="/organic" className="inline-flex items-center">
               <span className="inline-flex items-center text-sm font-semibold mb-6">
                 유기농 브랜드 <ChevronRight className="w-4 h-4" />
               </span>
+              </a>
             </div>
           </div>
 

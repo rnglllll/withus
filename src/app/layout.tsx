@@ -2,11 +2,8 @@
 
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer"; // ⬅️ Footer 추가
-
-const inter = Inter({ subsets: ["latin"] });
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Your App Title",
@@ -20,10 +17,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className={`${inter.className}`}>
+      <head>
+        {/* Pretendard 웹폰트 링크 추가 */}
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+        />
+      </head>
+      <body className="font-sans">
         <Header />
         {children}
-        <Footer /> {/* ⬅️ 여기에 추가 */}
+        <Footer />
       </body>
     </html>
   );
