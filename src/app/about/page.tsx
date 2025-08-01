@@ -6,7 +6,7 @@ const AboutPage = () => {
   return (
     <main>
       <HeroSection
-        backgroundImage="/about_header.png"
+        backgroundImage="/about/about_header.png"
         title="호주 키알라 퓨어 푸드"
         subtitle="KIALLA PURE FOODS"
       />
@@ -60,7 +60,7 @@ const AboutPage = () => {
       <section className="pt-10 pb-10 md:pb-[120px] px-10 xl:px-0 max-w-[1200px] mx-auto">
         <div className="flex flex-wrap justify-around items-center gap-6">
           <Image
-            src="/about_1.png"
+            src="/about/about_1.png"
             alt="organic"
             width={0}
             height={0}
@@ -69,7 +69,7 @@ const AboutPage = () => {
             priority
           />
           <Image
-            src="/about_2.png"
+            src="/about/about_2.png"
             alt="organic"
             width={0}
             height={0}
@@ -78,7 +78,7 @@ const AboutPage = () => {
             priority
           />
           <Image
-            src="/about_3.png"
+            src="/about/about_3.png"
             alt="organic"
             width={0}
             height={0}
@@ -87,7 +87,7 @@ const AboutPage = () => {
             priority
           />
           <Image
-            src="/about_4.png"
+            src="/about/about_4.png"
             alt="organic"
             width={0}
             height={0}
@@ -96,7 +96,7 @@ const AboutPage = () => {
             priority
           />
           <Image
-            src="/about_5.png"
+            src="/about/about_5.png"
             alt="organic"
             width={0}
             height={0}
