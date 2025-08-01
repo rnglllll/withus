@@ -10,7 +10,7 @@ const ContactPage = () => {
         title="문의하기"
         subtitle="CONTACT"
       />
-      <section>
+      <section className="max-w-[1200px] mx-auto px-10 xl:px-0">
         <div>
           <Image
             src="/contact_map.png"

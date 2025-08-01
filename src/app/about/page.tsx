@@ -10,7 +10,7 @@ const AboutPage = () => {
         title="호주 키알라 퓨어 푸드"
         subtitle="KIALLA PURE FOODS"
       />
-      <section>
+      <section className="max-w-[1200px] mx-auto px-10 xl:px-0">
         <div>
           <span>더 깨끗하게, 신선하게</span>
           <span>KIALLA PURE FOODS</span>
@@ -25,9 +25,10 @@ const AboutPage = () => {
             자신들의 철학을 공유하기 위해, 1988년에 KIALLA PURE FOODS PTY
             LTD(키알라 퓨어 푸드)라는 법인회사를 설립하여 본격적인 유기농 곡물
             생산 및 공급 사업을 시작하게 되었습니다. 그 이후로 KIALLA의 사업은
-            규모와 역량 모두에서 성장하여 우리의 브랜드이름인 "KIALLA"는
-            호주뿐만 아니라 많은 해외 시장으로 최고의 품질의 유기농 곡물 및 곡물
-            가공식품을 공급하는 유기농 곡물 제품의 아이콘이 되었습니다.
+            규모와 역량 모두에서 성장하여 우리의 브랜드이름인
+            &quot;KIALLA&quot;는 호주뿐만 아니라 많은 해외 시장으로 최고의
+            품질의 유기농 곡물 및 곡물 가공식품을 공급하는 유기농 곡물 제품의
+            아이콘이 되었습니다.
           </p>
         </div>
         <Image

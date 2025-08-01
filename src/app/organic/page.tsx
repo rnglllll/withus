@@ -10,7 +10,7 @@ const OrganicPage = () => {
         title="왜 유기농일까요?"
         subtitle="Why Organic?"
       />
-      <section>
+      <section className="max-w-[1200px] mx-auto px-10 xl:px-0">
         <div>
           <div>
             <Image
@@ -39,7 +39,7 @@ const OrganicPage = () => {
           현대적인 연구를 사용하여 자연과 함께 일합니다.
           <br /> 이러한 농업 방법은 종종 노동 집약적이지만 천연 식품 생산의 실제
           비용을 반영합니다.
-          <br /> 살충제와 제초제와 같은 '빠른 해결' 화학 용액의 사용은
+          <br /> 살충제와 제초제와 같은 &apos;빠른 해결&apos; 화학 용액의 사용은
           단기적으로 농작물 수확량을 증가시킬 수 있지만, 우리의 건강에 더 높은
           비용을 초래하고 음식 시스템의 미래 를 위협합니다.
           <br /> 소비자들은 우리가 먹는 것이 우리의 복지에 변화를 가져온다는
