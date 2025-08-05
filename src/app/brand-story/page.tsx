@@ -208,7 +208,7 @@ const BrandStoryPage = () => {
               />
               <span className="text-white text-base leading-[30px]">
                 <strong>KIALLA PURE ORGANIC</strong>은 여왕의 땅, 호주 Queens
-                Land 주 Toowooba 지역에 위치하고 있으며 이 지역 역시 곡물이 잘
+                Land 주 Toowoomba 지역에 위치하고 있으며 이 지역 역시 곡물이 잘
                 자랄 수 있는 비옥하고 물이 풍부한 지역으로 자연 친화적이고
                 건강한 농산물을 유기농으로 생산하여 소비자에게 유기농 식품의
                 중요성과 건강한 식품을 제공한다는 의미로{" "}

@@ -40,9 +40,9 @@ export default function IndexPage() {
         <div className="flex w-full md:max-w-[230px] flex-row md:flex-col items-center md:items-start justify-between md:justify-start px-6 pt-10 md:py-10 bg-[#3B1408] text-white">
           {/* 텍스트는 그대로 왼쪽 정렬 */}
           <p className="text-2xl font-semibold leading-snug text-left">
-            건강하고 깨끗한
+            유기농 밀가루만 사용한
             <br />
-            유기농 건강빵,
+            레알 건강빵,
             <br />
             키알라 베이커리
           </p>

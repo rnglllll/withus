@@ -34,7 +34,7 @@ const ContactPage = () => {
               가맹 문의
             </span>
             <span className="flex-3/5 md:flex-4/5">
-              베이커리사업부 임익환 팀장 010 - 6213 - 4933
+              베이커리사업부: 임익환 팀장 010 - 6213 - 4933
             </span>
           </div>
           <div className="flex">
