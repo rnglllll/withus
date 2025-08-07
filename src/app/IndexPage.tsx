@@ -188,10 +188,12 @@ export default function IndexPage() {
           </p>
           <div className="relative w-full max-w-[800px] bg-white rounded-full">
             <input
-              type="text"
-              placeholder="숫자 입력"
-              className="w-full rounded-full px-5 py-3 pr-24 text-sm outline-none text-[#333] placeholder:text-[#999]"
-            />
+  type="number"
+  placeholder="숫자 입력"
+  className="w-full rounded-full px-5 py-3 pr-24 text-sm outline-none text-[#333] placeholder:text-[#999]
+             [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+/>
+
             <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#3B1408] text-white text-sm px-5 py-2 rounded-full">
               조회
             </button>

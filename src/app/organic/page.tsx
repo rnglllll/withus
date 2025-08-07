@@ -28,7 +28,7 @@ const OrganicPage = () => {
               className="w-[722px] h-[187px] absolute bottom-[-60px] right-[-50px] hidden md:block"
             />
           </div>
-          <p className="px-20 pt-15 pb-15 font-semibold text-xl leading-[40px] tracking-tight text-center bg-orange/10 rounded-2xl">
+          <p className="px-5 md:px-20 pt-15 pb-15 font-semibold text-xl leading-[40px] tracking-tight text-center bg-orange/10 rounded-2xl">
             유기농 식품에 전념하고 있는 이유는 우리의 전체 식품 체계가 토양,
             식물, 동물, 음식, 사람,
             <br /> 그리고 환경과 연결되어 있다는 것을 너무나 잘 인식하기
