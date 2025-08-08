@@ -224,7 +224,7 @@ export default function IndexPage() {
             <input
               type="text"
               value={barcode}
-              onChange={handleChange}
+              readOnly  
               placeholder="숫자 입력"
               className="w-full rounded-full px-5 py-3 pr-24 text-sm outline-none text-[#333] placeholder:text-[#999]
                          [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
