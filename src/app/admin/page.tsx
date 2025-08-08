@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation"; // ✅ 추가
+import { useRouter } from "next/navigation";
 import { auth, db } from "@/lib/firebase";
 import {
   signInWithEmailAndPassword,
@@ -11,14 +11,18 @@ import {
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
 export default function AdminPage() {
-  const router = useRouter(); // ✅ 추가
+  const router = useRouter();
   const [uid, setUid] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // 로그인 폼 상태
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  // barcode 상태
   const [value, setValue] = useState("");
 
+  // 로그인 상태 감시
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, async (user) => {
       setUid(user?.uid ?? null);
@@ -39,8 +43,9 @@ export default function AdminPage() {
     try {
       setLoading(true);
       await signInWithEmailAndPassword(auth, email, password);
-    } catch (e: any) {
-      alert(`로그인 실패: ${e?.message || e}`);
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : String(e);
+      alert(`로그인 실패: ${msg}`);
     } finally {
       setLoading(false);
     }
@@ -51,6 +56,7 @@ export default function AdminPage() {
   };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // 숫자만 허용
     setValue(e.target.value.replace(/[^0-9]/g, ""));
   };
 
@@ -59,12 +65,14 @@ export default function AdminPage() {
       const ref = doc(db, "app", "config");
       await setDoc(ref, { barcode: value }, { merge: true });
       alert("저장되었습니다.");
-      router.push("/"); // ✅ 저장 후 인덱스로 이동
-    } catch (e: any) {
-      alert(`저장 실패: ${e?.message || e}`);
+      router.push("/"); // 저장 후 인덱스로 이동
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : String(e);
+      alert(`저장 실패: ${msg}`);
     }
   };
 
+  // 화면
   if (loading) {
     return (
       <main className="max-w-md mx-auto p-6">
@@ -74,6 +82,7 @@ export default function AdminPage() {
   }
 
   if (!uid) {
+    // 로그인 폼
     return (
       <main className="max-w-md mx-auto p-6 pt-[120px]">
         <h1 className="text-2xl font-semibold mb-4">관리자 로그인</h1>
@@ -104,6 +113,7 @@ export default function AdminPage() {
     );
   }
 
+  // 로그인 후 – 숫자 입력 & 저장
   return (
     <main className="max-w-md mx-auto p-6 pt-[120px]">
       <div className="flex items-center justify-between mb-6">
