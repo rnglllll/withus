@@ -1,7 +1,37 @@
+"use client";
+
 import Image from "next/image";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { db } from "@/lib/firebase";
+import { doc, onSnapshot } from "firebase/firestore";
 
 export default function IndexPage() {
+  const [barcode, setBarcode] = useState("");
+
+  useEffect(() => {
+    const ref = doc(db, "app", "config");
+    const unsub = onSnapshot(ref, (snap) => {
+      if (snap.exists()) {
+        setBarcode(snap.data().barcode || "");
+      }
+    });
+    return () => unsub();
+  }, []);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // 숫자만 허용
+    setBarcode(e.target.value.replace(/[^0-9]/g, ""));
+  };
+
+  const handleSearch = () => {
+    if (!barcode) return;
+    const url = `https://kiallafoods.com.au/plate2farm/kr/?input_barcode=${encodeURIComponent(
+      barcode
+    )}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <main>
       <section
@@ -26,6 +56,7 @@ export default function IndexPage() {
           </p>
         </div>
       </section>
+
       <section
         className="h-[300px] md:h-[500px] bg-cover bg-center bg-no-repeat flex justify-center items-center transition-all duration-500 ease-in-out"
         style={{ backgroundImage: 'url("/images/indexbg2.png")' }}
@@ -36,9 +67,9 @@ export default function IndexPage() {
           <span>키알라 베이커리는 밀가루부터 다릅니다</span>
         </p>
       </section>
+
       <section className="md:pt-[120px] md:px-10 md:flex md:max-w-[1200px] md:mx-auto">
         <div className="flex w-full md:max-w-[230px] flex-row md:flex-col items-center md:items-start justify-between md:justify-start px-6 pt-10 md:py-10 bg-[#3B1408] text-white">
-          {/* 텍스트는 그대로 왼쪽 정렬 */}
           <p className="text-2xl font-semibold leading-snug text-left">
             유기농 밀가루만 사용한
             <br />
@@ -46,8 +77,6 @@ export default function IndexPage() {
             <br />
             키알라 베이커리
           </p>
-
-          {/* 이미지만 따로 감싸서 중앙 정렬 */}
           <div className="ml-4 md:ml-0 md:mt-4 md:w-full">
             <Image
               src="/images/logowhite.svg"
@@ -73,13 +102,14 @@ export default function IndexPage() {
 
           <div className="px-6 md:pl-6 py-4 md:py-6 lg:pl-[80px] bg-[#3B1408] md:bg-white">
             <a href="/brand-story" className="inline-flex items-center">
-            <span className="inline-flex items-center text-sm font-semibold text-white md:text-[#333333]">
-              브랜드스토리 <ChevronRight className="w-4 h-4" />
-            </span>
+              <span className="inline-flex items-center text-sm font-semibold text-white md:text-[#333333]">
+                브랜드스토리 <ChevronRight className="w-4 h-4" />
+              </span>
             </a>
           </div>
         </div>
       </section>
+
       <section className="px-10 pt-10 pb-10 md:pb-[120px] md:flex md:gap-[80px] max-w-[1200px] mx-auto">
         <div className="w-full pb-10 md:pb-0">
           <Image
@@ -104,6 +134,7 @@ export default function IndexPage() {
           />
         </div>
       </section>
+
       <section
         className="px-6 py-15 md:py-[120px] bg-no-repeat bg-left bg-cover bg-fixed flex justify-center items-center"
         style={{ backgroundImage: 'url("/images/indexbg3.png")' }}
@@ -122,12 +153,13 @@ export default function IndexPage() {
                 진한 풍미와 순수한 맛을 경험해 보세요.
               </p>
               <a href="/products" className="inline-flex items-center">
-              <span className="inline-flex items-center text-sm font-semibold">
-                제품 소개 <ChevronRight className="w-4 h-4" />
-              </span>
+                <span className="inline-flex items-center text-sm font-semibold">
+                  제품 소개 <ChevronRight className="w-4 h-4" />
+                </span>
               </a>
             </div>
           </div>
+
           <div className="flex flex-col gap-8 md:flex-row">
             <div>
               <Image
@@ -171,6 +203,7 @@ export default function IndexPage() {
           </div>
         </div>
       </section>
+
       <section
         className="py-15 lg:py-[120px] bg-cover bg-center bg-no-repeat flex justify-center items-center text-white"
         style={{ backgroundImage: 'url("/images/indexbg4.png")' }}
@@ -184,22 +217,29 @@ export default function IndexPage() {
             있습니다.
             <br />
             아래의 검색 창에 Batch 번호의 처음 4자리를 입력하시면 생산자 정보를
-            확일할 수 있습니다.
+            확인할 수 있습니다.
           </p>
+
           <div className="relative w-full max-w-[800px] bg-white rounded-full">
             <input
-  type="number"
-  placeholder="숫자 입력"
-  className="w-full rounded-full px-5 py-3 pr-24 text-sm outline-none text-[#333] placeholder:text-[#999]
-             [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-/>
+              type="text"
+              value={barcode}
+              onChange={handleChange}
+              placeholder="숫자 입력"
+              className="w-full rounded-full px-5 py-3 pr-24 text-sm outline-none text-[#333] placeholder:text-[#999]
+                         [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            />
 
-            <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#3B1408] text-white text-sm px-5 py-2 rounded-full">
+            <button
+              onClick={handleSearch}
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#3B1408] text-white text-sm px-5 py-2 rounded-full"
+            >
               조회
             </button>
           </div>
         </div>
       </section>
+
       <section
         className="w-full h-auto bg-contain bg-no-repeat bg-bottom px-6 py-15 md:py-[120px] flex justify-center"
         style={{ backgroundImage: 'url("/images/indexbg5.png")' }}
@@ -218,9 +258,9 @@ export default function IndexPage() {
                 있다는 것을 너무나 잘 인식하기 때문입니다.
               </p>
               <a href="/organic" className="inline-flex items-center">
-              <span className="inline-flex items-center text-sm font-semibold mb-6">
-                유기농 브랜드 <ChevronRight className="w-4 h-4" />
-              </span>
+                <span className="inline-flex items-center text-sm font-semibold mb-6">
+                  유기농 브랜드 <ChevronRight className="w-4 h-4" />
+                </span>
               </a>
             </div>
           </div>
