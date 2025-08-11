@@ -16,11 +16,9 @@ async function loadFirebase() {
     import("firebase/firestore"),
   ]);
 
-  // 브라우저 환경에서만 실행되도록 보호
   if (typeof window === "undefined") {
     throw new Error("Firebase client SDK must run in the browser");
   }
-  // 환경변수 확인
   if (!process.env.NEXT_PUBLIC_FIREBASE_API_KEY) {
     throw new Error("Missing Firebase env");
   }
@@ -52,31 +50,23 @@ async function loadFirebase() {
   };
 }
 
-// Firestore 문서 타입
-type AppConfig = {
-  barcode?: string;
-};
+type AppConfig = { barcode?: string };
 
 export default function AdminPage() {
   const router = useRouter();
   const [uid, setUid] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // 로그인 폼 상태
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  // barcode 상태
   const [value, setValue] = useState("");
 
-  // 로그인 상태 감시 + 초기 값 로드
   useEffect(() => {
     let unsub: (() => void) | undefined;
 
     (async () => {
       try {
-        const { auth, db, onAuthStateChanged, doc, getDoc } =
-          await loadFirebase();
+        const { auth, db, onAuthStateChanged, doc, getDoc } = await loadFirebase();
 
         unsub = onAuthStateChanged(auth, async (user) => {
           setUid(user?.uid ?? null);
@@ -92,14 +82,11 @@ export default function AdminPage() {
           }
         });
       } catch {
-        // 빌드타임/서버 보호 혹은 env 누락 시
         setLoading(false);
       }
     })();
 
-    return () => {
-      if (unsub) unsub();
-    };
+    return () => unsub?.();
   }, []);
 
   const login = async () => {
@@ -127,7 +114,6 @@ export default function AdminPage() {
   };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // 숫자만 허용
     setValue(e.target.value.replace(/[^0-9]/g, ""));
   };
 
@@ -135,8 +121,7 @@ export default function AdminPage() {
     try {
       const { db, doc, setDoc } = await loadFirebase();
       const ref = doc(db, "app", "config");
-      const payload: AppConfig = { barcode: value };
-      await setDoc(ref, payload, { merge: true });
+      await setDoc(ref, { barcode: value }, { merge: true });
       alert("저장되었습니다.");
       router.push("/");
     } catch (e: unknown) {
@@ -145,7 +130,6 @@ export default function AdminPage() {
     }
   };
 
-  // 화면
   if (loading) {
     return (
       <main className="max-w-md mx-auto p-6">
@@ -155,7 +139,6 @@ export default function AdminPage() {
   }
 
   if (!uid) {
-    // 로그인 폼
     return (
       <main className="max-w-md mx-auto p-6 pt-[120px]">
         <h1 className="text-2xl font-semibold mb-4">관리자 로그인</h1>
@@ -186,7 +169,6 @@ export default function AdminPage() {
     );
   }
 
-  // 로그인 후 – 숫자 입력 & 저장
   return (
     <main className="max-w-md mx-auto p-6 pt-[120px]">
       <div className="flex items-center justify-between mb-6">
