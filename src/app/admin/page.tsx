@@ -130,10 +130,10 @@ export default function AdminPage() {
     }
   };
 
-  // 공통 wrapper: 화면 높이 = 뷰포트
+  // 80% 뷰포트 높이
   if (loading) {
     return (
-      <main className="min-h-[100dvh] flex">
+      <main className="min-h-[80dvh] flex">
         <div className="flex-1 max-w-md mx-auto p-6 flex items-start">
           <p>로딩 중…</p>
         </div>
@@ -143,7 +143,7 @@ export default function AdminPage() {
 
   if (!uid) {
     return (
-      <main className="min-h-[100dvh] flex">
+      <main className="min-h-[80dvh] flex">
         <div className="flex-1 max-w-md mx-auto p-6 pt-[120px]">
           <h1 className="text-2xl font-semibold mb-4">관리자 로그인</h1>
           <div className="flex flex-col gap-3">
@@ -163,7 +163,7 @@ export default function AdminPage() {
             />
             <button
               onClick={login}
-              className="rounded px-4 py-3 bg-black text-white disabled:opacity-60"
+              className="rounded px-4 py-3 bg-black text-white disabled:opacity-60 cursor-pointer disabled:cursor-not-allowed"
               disabled={!email || !password}
             >
               로그인
@@ -175,7 +175,7 @@ export default function AdminPage() {
   }
 
   return (
-    <main className="min-h-[100dvh] flex">
+    <main className="min-h-[80dvh] flex">
       <div className="flex-1 max-w-md mx-auto p-6 pt-[120px] flex flex-col">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-semibold">바코드 설정</h1>
@@ -194,7 +194,7 @@ export default function AdminPage() {
           />
           <button
             onClick={onSave}
-            className="shrink-0 cursor-pointer rounded-full px-5 py-3 bg-black text-white disabled:opacity-60"
+            className="shrink-0 rounded-full px-5 py-3 bg-black text-white disabled:opacity-60 cursor-pointer disabled:cursor-not-allowed"
             disabled={!value}
           >
             저장
@@ -204,9 +204,7 @@ export default function AdminPage() {
         <p className="mt-3 text-sm text-gray-500">
           저장하면 메인 페이지 입력란에 자동 반영됩니다.
         </p>
-
-        {/* 푸터를 바닥에 붙이고 싶다면 아래처럼 mt-auto 사용 */}
-        {/* <footer className="mt-auto text-xs text-gray-400">© Kialla Bakery</footer> */}
+        {/* 필요하면 푸터를 바닥에 붙일 때: <footer className="mt-auto text-xs text-gray-400">© Kialla Bakery</footer> */}
       </div>
     </main>
   );
