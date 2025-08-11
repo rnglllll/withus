@@ -232,7 +232,7 @@ export default function IndexPage() {
 
             <button
               onClick={handleSearch}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#3B1408] text-white text-sm px-5 py-2 rounded-full"
+              className="cursor-pointer absolute right-2 top-1/2 -translate-y-1/2 bg-[#3B1408] text-white text-sm px-5 py-2 rounded-full"
             >
               조회
             </button>
