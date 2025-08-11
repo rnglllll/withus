@@ -3,20 +3,25 @@
 import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
-import { db } from "@/lib/firebase";
+// import { db } from "@/lib/firebase";
 import { doc, onSnapshot } from "firebase/firestore";
 
 export default function IndexPage() {
   const [barcode, setBarcode] = useState("");
 
   useEffect(() => {
-    const ref = doc(db, "app", "config");
-    const unsub = onSnapshot(ref, (snap) => {
-      if (snap.exists()) {
-        setBarcode(snap.data().barcode || "");
-      }
-    });
-    return () => unsub();
+    let unsub: (() => void) | undefined;
+
+    (async () => {
+      const { getFirebase } = await import("@/lib/firebase-client"); // ← 동적 import
+      const { db } = getFirebase(); // ← 브라우저에서만 실행
+      const ref = doc(db, "app", "config");
+      unsub = onSnapshot(ref, (snap) => {
+        if (snap.exists()) setBarcode((snap.data() as any).barcode || "");
+      });
+    })();
+
+    return () => unsub?.();
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
