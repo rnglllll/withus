@@ -130,74 +130,84 @@ export default function AdminPage() {
     }
   };
 
+  // 공통 wrapper: 화면 높이 = 뷰포트
   if (loading) {
     return (
-      <main className="max-w-md mx-auto p-6">
-        <p>로딩 중…</p>
+      <main className="min-h-[100dvh] flex">
+        <div className="flex-1 max-w-md mx-auto p-6 flex items-start">
+          <p>로딩 중…</p>
+        </div>
       </main>
     );
   }
 
   if (!uid) {
     return (
-      <main className="max-w-md mx-auto p-6 pt-[120px]">
-        <h1 className="text-2xl font-semibold mb-4">관리자 로그인</h1>
-        <div className="flex flex-col gap-3">
-          <input
-            type="email"
-            placeholder="이메일"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="rounded px-4 py-3 border"
-          />
-          <input
-            type="password"
-            placeholder="비밀번호"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="rounded px-4 py-3 border"
-          />
-          <button
-            onClick={login}
-            className="rounded px-4 py-3 bg-black text-white disabled:opacity-60"
-            disabled={!email || !password}
-          >
-            로그인
-          </button>
+      <main className="min-h-[100dvh] flex">
+        <div className="flex-1 max-w-md mx-auto p-6 pt-[120px]">
+          <h1 className="text-2xl font-semibold mb-4">관리자 로그인</h1>
+          <div className="flex flex-col gap-3">
+            <input
+              type="email"
+              placeholder="이메일"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="rounded px-4 py-3 border"
+            />
+            <input
+              type="password"
+              placeholder="비밀번호"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="rounded px-4 py-3 border"
+            />
+            <button
+              onClick={login}
+              className="rounded px-4 py-3 bg-black text-white disabled:opacity-60"
+              disabled={!email || !password}
+            >
+              로그인
+            </button>
+          </div>
         </div>
       </main>
     );
   }
 
   return (
-    <main className="max-w-md mx-auto p-6 pt-[120px]">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-semibold">바코드 설정</h1>
-        <button onClick={logout} className="text-sm underline">
-          로그아웃
-        </button>
-      </div>
+    <main className="min-h-[100dvh] flex">
+      <div className="flex-1 max-w-md mx-auto p-6 pt-[120px] flex flex-col">
+        <div className="flex items-center justify-between mb-6">
+          <h1 className="text-2xl font-semibold">바코드 설정</h1>
+          <button onClick={logout} className="text-sm underline">
+            로그아웃
+          </button>
+        </div>
 
-      <div className="flex gap-3">
-        <input
-          type="text"
-          value={value}
-          onChange={onChange}
-          placeholder="숫자 입력"
-          className="flex-1 rounded-full px-5 py-3 text-sm outline-none border"
-        />
-        <button
-          onClick={onSave}
-          className="shrink-0 rounded-full px-5 py-3 bg-black text-white disabled:opacity-60"
-          disabled={!value}
-        >
-          저장
-        </button>
-      </div>
+        <div className="flex gap-3">
+          <input
+            type="text"
+            value={value}
+            onChange={onChange}
+            placeholder="숫자 입력"
+            className="flex-1 rounded-full px-5 py-3 text-sm outline-none border"
+          />
+          <button
+            onClick={onSave}
+            className="shrink-0 cursor-pointer rounded-full px-5 py-3 bg-black text-white disabled:opacity-60"
+            disabled={!value}
+          >
+            저장
+          </button>
+        </div>
 
-      <p className="mt-3 text-sm text-gray-500">
-        저장하면 메인 페이지 입력란에 자동 반영됩니다.
-      </p>
+        <p className="mt-3 text-sm text-gray-500">
+          저장하면 메인 페이지 입력란에 자동 반영됩니다.
+        </p>
+
+        {/* 푸터를 바닥에 붙이고 싶다면 아래처럼 mt-auto 사용 */}
+        {/* <footer className="mt-auto text-xs text-gray-400">© Kialla Bakery</footer> */}
+      </div>
     </main>
   );
 }
