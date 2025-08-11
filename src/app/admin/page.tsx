@@ -1,12 +1,10 @@
+// src/app/admin/page.tsx
 "use client";
-
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-// ✅ 공통 로더: 클라이언트에서만 Firebase 동적 임포트 + 초기화
+// 클라이언트에서만 Firebase 동적 임포트 + 초기화
 async function loadFirebase() {
   const [{ initializeApp, getApps, getApp }] = await Promise.all([
     import("firebase/app"),
@@ -18,7 +16,11 @@ async function loadFirebase() {
     import("firebase/firestore"),
   ]);
 
-  // 빌드/서버 안전 가드: 키 없으면 초기화 스킵
+  // 브라우저 환경에서만 실행되도록 보호
+  if (typeof window === "undefined") {
+    throw new Error("Firebase client SDK must run in the browser");
+  }
+  // 환경변수 확인
   if (!process.env.NEXT_PUBLIC_FIREBASE_API_KEY) {
     throw new Error("Missing Firebase env");
   }
@@ -38,8 +40,22 @@ async function loadFirebase() {
   const auth = getAuth(app);
   const db = getFirestore(app);
 
-  return { auth, db, onAuthStateChanged, signInWithEmailAndPassword, signOut, doc, getDoc, setDoc };
+  return {
+    auth,
+    db,
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+    signOut,
+    doc,
+    getDoc,
+    setDoc,
+  };
 }
+
+// Firestore 문서 타입
+type AppConfig = {
+  barcode?: string;
+};
 
 export default function AdminPage() {
   const router = useRouter();
@@ -59,7 +75,8 @@ export default function AdminPage() {
 
     (async () => {
       try {
-        const { auth, db, onAuthStateChanged, doc, getDoc } = await loadFirebase();
+        const { auth, db, onAuthStateChanged, doc, getDoc } =
+          await loadFirebase();
 
         unsub = onAuthStateChanged(auth, async (user) => {
           setUid(user?.uid ?? null);
@@ -68,13 +85,14 @@ export default function AdminPage() {
           if (user) {
             const ref = doc(db, "app", "config");
             const snap = await getDoc(ref);
-            setValue(String(snap.data()?.barcode ?? ""));
+            const data = (snap.data() as AppConfig | undefined) ?? {};
+            setValue(String(data.barcode ?? ""));
           } else {
             setValue("");
           }
         });
       } catch {
-        // env 없으면 빌드 시엔 여기로 옴 → 클라이언트에서만 재시도되도록 무시
+        // 빌드타임/서버 보호 혹은 env 누락 시
         setLoading(false);
       }
     })();
@@ -98,8 +116,14 @@ export default function AdminPage() {
   };
 
   const logout = async () => {
-    const { auth, signOut } = await loadFirebase(); // auth도 받아오고
-  await signOut(auth); // 인자로 전달
+    try {
+      const { auth, signOut } = await loadFirebase();
+      await signOut(auth);
+      setUid(null);
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : String(e);
+      alert(`로그아웃 실패: ${msg}`);
+    }
   };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -111,7 +135,8 @@ export default function AdminPage() {
     try {
       const { db, doc, setDoc } = await loadFirebase();
       const ref = doc(db, "app", "config");
-      await setDoc(ref, { barcode: value }, { merge: true });
+      const payload: AppConfig = { barcode: value };
+      await setDoc(ref, payload, { merge: true });
       alert("저장되었습니다.");
       router.push("/");
     } catch (e: unknown) {
@@ -181,7 +206,7 @@ export default function AdminPage() {
         />
         <button
           onClick={onSave}
-          className="shrink-0 rounded-full px-5 py-3 bg-black text-white"
+          className="shrink-0 rounded-full px-5 py-3 bg-black text-white disabled:opacity-60"
           disabled={!value}
         >
           저장
