@@ -1,10 +1,46 @@
+// src/app/IndexPage.tsx
 "use client";
 
 import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
-// import { db } from "@/lib/firebase";
-import { doc, onSnapshot } from "firebase/firestore";
+
+// Firestore 타입
+type AppConfig = {
+  barcode?: string;
+};
+
+// 클라이언트에서만 Firestore 동적 임포트
+async function loadFirestore() {
+  const [{ initializeApp, getApps, getApp }] = await Promise.all([
+    import("firebase/app"),
+  ]);
+  const [{ getFirestore, doc, onSnapshot }] = await Promise.all([
+    import("firebase/firestore"),
+  ]);
+
+  if (typeof window === "undefined") {
+    throw new Error("Firestore must run in the browser");
+  }
+  if (!process.env.NEXT_PUBLIC_FIREBASE_API_KEY) {
+    throw new Error("Missing Firebase env");
+  }
+
+  const app =
+    getApps().length > 0
+      ? getApp()
+      : initializeApp({
+          apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY!,
+          authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+          projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+          appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+          messagingSenderId:
+            process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+        });
+
+  const db = getFirestore(app);
+  return { db, doc, onSnapshot };
+}
 
 export default function IndexPage() {
   const [barcode, setBarcode] = useState("");
@@ -13,21 +49,25 @@ export default function IndexPage() {
     let unsub: (() => void) | undefined;
 
     (async () => {
-      const { getFirebase } = await import("@/lib/firebase-client"); // ← 동적 import
-      const { db } = getFirebase(); // ← 브라우저에서만 실행
-      const ref = doc(db, "app", "config");
-      unsub = onSnapshot(ref, (snap) => {
-        if (snap.exists()) setBarcode((snap.data() as any).barcode || "");
-      });
+      try {
+        const { db, doc, onSnapshot } = await loadFirestore();
+        const ref = doc(db, "app", "config");
+        unsub = onSnapshot(ref, (snap) => {
+          if (!snap.exists()) {
+            setBarcode("");
+            return;
+          }
+          const data = (snap.data() as AppConfig | undefined) ?? {};
+          setBarcode(data.barcode ?? "");
+        });
+      } catch {
+        // env 미설정/서버 환경 보호
+        setBarcode("");
+      }
     })();
 
     return () => unsub?.();
   }, []);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // 숫자만 허용
-    setBarcode(e.target.value.replace(/[^0-9]/g, ""));
-  };
 
   const handleSearch = () => {
     if (!barcode) return;
@@ -229,7 +269,7 @@ export default function IndexPage() {
             <input
               type="text"
               value={barcode}
-              readOnly  
+              readOnly
               placeholder="숫자 입력"
               className="w-full rounded-full px-5 py-3 pr-24 text-sm outline-none text-[#333] placeholder:text-[#999]
                          [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
@@ -237,7 +277,7 @@ export default function IndexPage() {
 
             <button
               onClick={handleSearch}
-              className="cursor-pointer absolute right-2 top-1/2 -translate-y-1/2 bg-[#3B1408] text-white text-sm px-5 py-2 rounded-full"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#3B1408] text-white text-sm px-5 py-2 rounded-full"
             >
               조회
             </button>
