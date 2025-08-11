@@ -6,8 +6,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Your App Title",
-  description: "Your App Description",
+  title: "Kialla Bakery",
+  description: "Kialla Bakery - 호주 청정 밀가루로 만든 건강한 빵",
 };
 
 export default function RootLayout({
