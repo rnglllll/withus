@@ -98,8 +98,8 @@ export default function AdminPage() {
   };
 
   const logout = async () => {
-    const { signOut } = await loadFirebase();
-    await signOut();
+    const { auth, signOut } = await loadFirebase(); // auth도 받아오고
+  await signOut(auth); // 인자로 전달
   };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
