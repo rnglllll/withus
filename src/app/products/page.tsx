@@ -107,45 +107,49 @@ const ProductsPage = () => {
           </section>
 
           {/* Bread */}
-          <section className="flex flex-col gap-7">
-            <span className="text-[40px] leading-13 font-semibold py-5">
-              Bread
-            </span>
+<section className="flex flex-col gap-7">
+  <span className="text-[40px] leading-13 font-semibold py-5">
+    Bread
+  </span>
 
-            <div className="flex flex-col gap-15">
-              {[
-                {
-                  title: "통밀 치아바타",
-                  desc: `100% 유기농 통밀가루와 물, 올리브오일을 사용하여 48시간 이상 저온발효로 수분을 충분히 머금고 있어서 겉은 바삭, 속은 쫀득하고 고소한 풍미를 살렸습니다. 풍부한 식이섬유와 비타민, 미네랄을 함유하고 있어 소화를 돕고 오랜 포만감을 유지하여 식단관리 하시는 분들께도 추천드립니다.`,
-                  image: "/products/bread_4.png",
-                },
-                {
-                  title: "깜빠뉴",
-                  desc: `프랑스어로 ’시골빵’을 뜻하는 깜빠뉴는 전통 프랑스식 천연발효빵입니다. 천연 발효종 사워도우로 만들어 깊은 풍미와 쫀득한 식감이 특징으로, 천연 발효종을 사용해 소화에 좋고 혈당 반응이 낮고, 통밀을 사용해 식이섬유와 미네랄이 풍부합니다. 또한 방부제와 설탕을 사용하지 않고 깊은 맛과 자연 보존력을 구현했습니다.`,
-                  image: "/products/bread_1.png",
-                },
-                {
-                  title: "무화과 크림치즈 깜빠뉴",
-                  desc: `자연의 달콤함과 고소함의 조화, 천연발효 깜빠뉴에 말린 무화과의 달콤함과 크림치즈의 부드러운 풍미를 더한 빵입니다. 한입 베어 물 때마다 쫀득함, 고소함, 부드러움이 어우러지는 프리미엄 건강빵입니다. 따뜻하게 데워 먹거나 꿀 한 방울을 뿌려 커피나 와인과 함께 드시면 무화과의 자연스러운 달콤함과 크림치즈의 부드러운 고소함이 어우러져 완벽한 맛의 균형을 이룹니다.`,
-                  image: "/products/bread_2.png",
-                },
-              ].map(({ title, desc, image }, i) => (
-                <div key={i} className="flex flex-col lg:flex-row gap-5">
-                  <div className="relative w-full lg:w-2/5 aspect-[3/2]">
-                    <Image src={image} alt={title} fill className="object-cover" />
-                  </div>
-                  <div className="flex flex-col gap-5 justify-between py-11 w-full lg:w-3/5">
-                    <div className="flex flex-col gap-[23px]">
-                      <span className="font-text-xl font-semibold">{title}</span>
-                      <p className="font-text-base whitespace-pre-line">{desc}</p>
-                    </div>
-                    <BreadTag textSrc={["유기농 호라산밀가루 100%", "천연발효", "비건빵"]} />
-                  </div>
-                </div>
-              ))}
-              <div className="border-b border-black/20 w-full" />
-            </div>
-          </section>
+  <div className="flex flex-col gap-15">
+    {[
+      {
+        title: "통밀 치아바타",
+        desc: `100% 유기농 통밀가루와 물, 올리브오일을 사용하여 48시간 이상 저온발효로 수분을 충분히 머금고 있어서 겉은 바삭, 속은 쫀득하고 고소한 풍미를 살렸습니다. 풍부한 식이섬유와 비타민, 미네랄을 함유하고 있어 소화를 돕고 오랜 포만감을 유지하여 식단관리 하시는 분들께도 추천드립니다.`,
+        image: "/products/bread_4.png",
+        tags: ["유기농 통밀가루 100%", "천연발효", "비건빵"], // ← 첫 번째만 3개
+      },
+      {
+        title: "깜빠뉴",
+        desc: `프랑스어로 ’시골빵’을 뜻하는 깜빠뉴는 전통 프랑스식 천연발효빵입니다. 천연 발효종 사워도우로 만들어 깊은 풍미와 쫀득한 식감이 특징으로, 천연 발효종을 사용해 소화에 좋고 혈당 반응이 낮고, 통밀을 사용해 식이섬유와 미네랄이 풍부합니다. 또한 방부제와 설탕을 사용하지 않고 깊은 맛과 자연 보존력을 구현했습니다.`,
+        image: "/products/bread_1.png",
+        tags: ["유기농 통밀가루 100%", "유기농 밀가루 100%", "천연발효", "비건빵"], // ← 나머지 2개는 4개
+      },
+      {
+        title: "무화과 크림치즈 깜빠뉴",
+        desc: `자연의 달콤함과 고소함의 조화, 천연발효 깜빠뉴에 말린 무화과의 달콤함과 크림치즈의 부드러운 풍미를 더한 빵입니다. 한입 베어 물 때마다 쫀득함, 고소함, 부드러움이 어우러지는 프리미엄 건강빵입니다. 따뜻하게 데워 먹거나 꿀 한 방울을 뿌려 커피나 와인과 함께 드시면 무화과의 자연스러운 달콤함과 크림치즈의 부드러운 고소함이 어우러져 완벽한 맛의 균형을 이룹니다.`,
+        image: "/products/bread_2.png",
+        tags: ["유기농 통밀가루 100%", "유기농 밀가루 100%", "천연발효", "비건빵"], // ← 동일
+      },
+    ].map(({ title, desc, image, tags }, i) => (
+      <div key={i} className="flex flex-col lg:flex-row gap-5">
+        <div className="relative w-full lg:w-2/5 aspect-[3/2]">
+          <Image src={image} alt={title} fill className="object-cover" />
+        </div>
+        <div className="flex flex-col gap-5 justify-between py-11 w-full lg:w-3/5">
+          <div className="flex flex-col gap-[23px]">
+            <span className="font-text-xl font-semibold">{title}</span>
+            <p className="font-text-base whitespace-pre-line">{desc}</p>
+          </div>
+          <BreadTag textSrc={tags} />
+        </div>
+      </div>
+    ))}
+    <div className="border-b border-black/20 w-full" />
+  </div>
+</section>
+
         </div>
       </div>
     </main>
